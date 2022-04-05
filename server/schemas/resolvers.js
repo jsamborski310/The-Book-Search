@@ -4,7 +4,7 @@ const { signToken } = require('../utils/auth');
 
 
 // Day 03: 25, 26
-// Not sure if user._id is correct. 
+// QUESTION: Not sure if user._id is correct. 
 const resolvers = {
     Query: {
         me: async ( parent, args, context ) => {
@@ -44,27 +44,36 @@ const resolvers = {
             return { token, user };
           },
 
+//   QUESTION: Is this set up correctly? `savedBooks` not being used in the argument?
           saveBook: async (parent, { savedBooks }, context) => {
             if (context.user) {
-              const updatedUser = await User.create({
-                // bookId,
-                authors,
-                description,
-                title,
-                image,
-                link,
-              });
-// What should be passed to savedBooks?  
-              await User.findOneAndUpdate(
-                { _id: context.user._id },
-                { $addToSet: { savedBooks: book._id } }
-              );
-      
-              return updatedUser;
+                return User.findOneAndUpdate(
+                    {_id: context.user._id },
+                    { 
+                        $addToSet: {savedBooks: savedBooks},
+                    },
+                    {
+                        new: true,
+                        runValidators: true,
+                    }
+                );
             }
             throw new AuthenticationError('You need to be logged in!');
           },
-        
+
+// QUESTION: Like this or like removeThought. Day 3, 26, 25
+          removeBook: async (parent, { bookId }, context) => {
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    { _id: bookId },
+                    {
+                      $pull: {savedBooks: bookId},
+                    },
+                    { new: true }
+                  );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
 
     },
   };
