@@ -44,9 +44,9 @@ const resolvers = {
             return { token, user };
           },
 
-          saveBook: async (parent, { booksSaved }, context) => {
+          saveBook: async (parent, { savedBooks }, context) => {
             if (context.user) {
-              const book = await User.create({
+              const updatedUser = await User.create({
                 // bookId,
                 authors,
                 description,
@@ -54,13 +54,13 @@ const resolvers = {
                 image,
                 link,
               });
-      
+// What should be passed to savedBooks?  
               await User.findOneAndUpdate(
                 { _id: context.user._id },
-                { $addToSet: { books: book._id } }
+                { $addToSet: { savedBooks: book._id } }
               );
       
-              return book;
+              return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in!');
           },
