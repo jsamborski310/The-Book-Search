@@ -1,10 +1,9 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Book } = require('../models');
+const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
-// Day 03: 25, 26
-// QUESTION: Not sure if user._id is correct. 
+// Day 03: 25, 26 
 const resolvers = {
     Query: {
         me: async ( parent, args, context ) => {
@@ -24,8 +23,15 @@ const resolvers = {
     // Day 03: 26
 
     Mutation: {
+
+
+      addUser: async (parent, { username, email, password }) => {
+        const user = await User.create({ username, email, password });
+        const token = signToken(user);
+        return { token, user };
+      },
     
-        login: async (parent, { email, password }) => {
+        loginUser: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
       
             if (!user) {
@@ -43,13 +49,8 @@ const resolvers = {
             return { token, user };
           },
 
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
-            const token = signToken(user);
-            return { token, user };
-          },
 
-//   QUESTION: Is this set up correctly? `savedBooks` not being used in the argument?
+
           saveBook: async (parent, args, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
@@ -72,7 +73,7 @@ const resolvers = {
                 return User.findOneAndUpdate(
                     { _id: context.user._id },
                     {
-                      $pull: {savedBooks: args.bookId},
+                      $pull: {savedBooks: { bookId: args.bookId } },
                     },
                     { new: true }
                   );

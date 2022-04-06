@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-app.use(routes);
+// app.use(routes);
 
 // DONE| Day 03: 25: Creates a new instance of an Apollow server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {

@@ -2,9 +2,9 @@ import { gql } from '@apollo/client';
 
 // Day 03: 26
 export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
+  mutation loginUser($email: String!, $password: String!) {
 
-    login(email: $email, password: $password) {
+    loginUser(email: $email, password: $password) {
       token
       user {
         _id
@@ -28,7 +28,7 @@ export const ADD_USER = gql`
   }
 `;
 
-// QUESTION: What should I replace $thoughtText with?
+
 export const SAVE_BOOK = gql`
   mutation saveBook($bookData: savedBook!) {
 
@@ -50,7 +50,6 @@ export const SAVE_BOOK = gql`
 `;
 
 // Day 03: 25
-// QUESTION: What should go after removeBook?
 
 export const REMOVE_BOOK = gql`
   mutation removeBook($bookId: ID!) {
