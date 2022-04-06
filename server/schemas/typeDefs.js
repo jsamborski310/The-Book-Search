@@ -32,7 +32,7 @@ const typeDefs = gql`
 # https://www.apollographql.com/docs/apollo-server/schema/schema/
 # https://atheros.ai/blog/input-object-type-as-an-argument-for-graphql-mutations-and-queries
 
-  input SavedBook {
+  input savedBook {
     bookId: ID!
     authors: [String]
     description: String
@@ -45,7 +45,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(input: SavedBook!): User
+    saveBook(input: savedBook!): User
     # Day 03: 26 
     removeBook(bookId: ID!): User
   }

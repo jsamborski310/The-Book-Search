@@ -50,12 +50,12 @@ const resolvers = {
           },
 
 //   QUESTION: Is this set up correctly? `savedBooks` not being used in the argument?
-          saveBook: async (parent, { savedBooks }, context) => {
+          saveBook: async (parent, { savedBook }, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
                     {_id: context.user._id },
                     { 
-                        $addToSet: {savedBooks: savedBooks},
+                        $addToSet: {savedBooks: savedBook},
                     },
                     {
                         new: true,
