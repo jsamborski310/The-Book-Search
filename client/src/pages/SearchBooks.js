@@ -20,7 +20,7 @@ const SearchBooks = () => {
 
       /////////////////////////
     // Day 03:26
-    const [saveBook, {data, error}] = useMutation(SAVE_BOOK);
+    const [saveBook, {error}] = useMutation(SAVE_BOOK);
 
     /////////////////////////
 
@@ -83,7 +83,8 @@ const SearchBooks = () => {
       // Day 03: 26
       // QUESTION: How should this be set up?
 
-      const {data} = await saveBook({
+      // const {data} = await saveBook({
+      await saveBook({
         variables: { input: bookToSave }
       });
     /////////////////////////
