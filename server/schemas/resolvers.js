@@ -55,7 +55,7 @@ const resolvers = {
                 return User.findOneAndUpdate(
                     {_id: context.user._id },
                     { 
-                        $addToSet: {savedBooks: args.input},
+                        $addToSet: {savedBooks: args.bookData},
                     },
                     {
                         new: true,

@@ -30,9 +30,9 @@ export const ADD_USER = gql`
 
 // QUESTION: What should I replace $thoughtText with?
 export const SAVE_BOOK = gql`
-  mutation saveBook($input: savedBook!) {
+  mutation saveBook($bookData: savedBook!) {
 
-    saveBook(input: $input) {
+    saveBook(bookData: $bookData) {
       _id,
       username,
       email,
