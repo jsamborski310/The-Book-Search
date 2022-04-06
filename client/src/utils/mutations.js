@@ -8,7 +8,6 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username
       }
     }
   }
@@ -18,10 +17,12 @@ export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
 
     addUser(username: $username, email: $email, password: $password) {
+
       token
       user {
         _id
         username
+        email
       }
     }
   }
@@ -29,15 +30,21 @@ export const ADD_USER = gql`
 
 // QUESTION: What should I replace $thoughtText with?
 export const SAVE_BOOK = gql`
-  mutation saveBook($savedBooks: BookInput!) {
+  mutation saveBook($input: SavedBook) {
 
-    saveBook(savedBooks: $thoughtText) {
-      bookId,
-      authors,
-      description,
-      title,
-      image,
-      link,
+    saveBook(input: $input) {
+      _id,
+      username,
+      email,
+      bookCount,
+      savedBooks, {
+        bookId,
+        authors,
+        description,
+        title,
+        image,
+        link
+      }
     }
   }
 `;
@@ -48,9 +55,18 @@ export const SAVE_BOOK = gql`
 export const REMOVE_BOOK = gql`
   mutation removeBook($bookId: ID!) {
     removeBook(bookId: $ID) {
-      _id
-      username
-      savedBooks
+      _id,
+      username,
+      email,
+      bookCount,
+      savedBooks, {
+        bookId,
+        authors,
+        description,
+        title,
+        image,
+        link
+      }
     }
   }
 `;
