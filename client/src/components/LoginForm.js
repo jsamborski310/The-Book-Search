@@ -33,19 +33,16 @@ const LoginForm = () => {
       event.stopPropagation();
     }
 
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
-      console.log(userFormData);
-      try {
-        const { data } = await login({
-          variables: { ...userFormData },
-        });
-  
-        Auth.login(data.login.token);
-      } catch (e) {
-        console.error(e);
-      }    
-    // try {
+    try {
+// Day 03: 26: Login
+      const { data } = await login({
+        variables: { ...userFormData },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
     //   const response = await loginUser(userFormData);
 
     //   if (!response.ok) {
