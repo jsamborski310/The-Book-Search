@@ -59,9 +59,9 @@ const SearchBooks = () => {
   // create function to handle saving a book to our database
   const handleSaveBook = async (bookId) => {
 
-
+    /////////////////////////
     // Day 03:26
-    const [saveBook, {error, data}] = useMutation[SAVE_BOOK];
+    const [saveBook, {data, error}] = useMutation[SAVE_BOOK];
 
     /////////////////////////
 
@@ -77,14 +77,15 @@ const SearchBooks = () => {
 
     try {
       // const response = await saveBook(bookToSave, token);
-
+    /////////////////////////
       // Day 03: 26
       // QUESTION: How should this be set up?
 
-      const {data} = await saveBook ({
-        variables: {...savedBookIds}
+      const {data} = await saveBook({
+        variables: {...savedBookIds, bookToSave, token}
       });
-
+    /////////////////////////
+    
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
       // }
