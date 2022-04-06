@@ -27,4 +27,31 @@ export const ADD_USER = gql`
   }
 `;
 
+// QUESTION: What should I replace $thoughtText with?
+export const SAVE_BOOK = gql`
+  mutation saveBook($savedBooks: BookInput!) {
+
+    saveBook(savedBooks: $thoughtText) {
+      bookId,
+      authors,
+      description,
+      title,
+      image,
+      link,
+    }
+  }
+`;
+
+// Day 03: 25
+// QUESTION: What should go after removeBook?
+
+export const REMOVE_BOOK = gql`
+  mutation removeBook($bookId: ID!) {
+    removeBook(bookId: $ID) {
+      _id
+      username
+      savedBooks
+    }
+  }
+`;
 
