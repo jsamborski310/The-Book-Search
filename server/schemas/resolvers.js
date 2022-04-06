@@ -67,12 +67,12 @@ const resolvers = {
           },
 
 // QUESTION: Like this or like removeThought. Day 3, 26, 25
-          removeBook: async (parent, { bookId }, context) => {
+          removeBook: async (parent, args, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
-                    { _id: bookId },
+                    { _id: context.user._id },
                     {
-                      $pull: {savedBooks: bookId},
+                      $pull: {savedBooks: args.bookId},
                     },
                     { new: true }
                   );

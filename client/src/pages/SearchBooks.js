@@ -21,7 +21,7 @@ const SearchBooks = () => {
 
       /////////////////////////
     // Day 03:26
-    const [saveBook, {error}] = useMutation(SAVE_BOOK);
+    const [ saveBook ] = useMutation(SAVE_BOOK);
 
     /////////////////////////
 
