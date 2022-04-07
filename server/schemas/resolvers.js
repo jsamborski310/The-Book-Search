@@ -53,7 +53,7 @@ const resolvers = {
 
           saveBook: async (parent, args, context) => {
             if (context.user) {
-                return User.findOneAndUpdate(
+                const updatedUser = User.findOneAndUpdate(
                     {_id: context.user._id },
                     { 
                         $addToSet: {savedBooks: args.bookData},
@@ -63,6 +63,7 @@ const resolvers = {
                         runValidators: true,
                     }
                 );
+                return updatedUser
             }
             throw new AuthenticationError('You need to be logged in!');
           },
@@ -70,13 +71,15 @@ const resolvers = {
 // QUESTION: Like this or like removeThought. Day 3, 26, 25
           removeBook: async (parent, args, context) => {
             if (context.user) {
-                return User.findOneAndUpdate(
+                const updatedUser =  User.findOneAndUpdate(
                     { _id: context.user._id },
                     {
                       $pull: {savedBooks: { bookId: args.bookId } },
                     },
                     { new: true }
                   );
+
+                  return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in!');
           },
