@@ -43,13 +43,13 @@ This application is covered under the MIT license.
 Preview screens of the application. 
 
 #### HOMEPAGE
-![Screen shot of homepage, no searched books.](/public/images/search-books.png)
+![Screen shot of homepage, no searched books.](client/public/images/search-books.png)
 
 #### ACCOUNT VIEW
-![Screen shot of account view.](public/images/book-searched.jpg)
+![Screen shot of account view.](client/public/images/book-searched.jpg)
 
 #### SAVED BOOKS
-![Screen shot of books saved.](public/images/saved-books.png)
+![Screen shot of books saved.](/client/public/images/saved-books.png)
 
 
 ## Preview

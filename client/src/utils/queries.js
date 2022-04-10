@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
 
-// Day 03: 28
-
+// user data
 export const GET_ME = gql`
   query me {
     me {

@@ -6,17 +6,14 @@ import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
-// Day 03: 26
-
+// Imports mutations and queries
 import { GET_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
   
   const { loading, data } = useQuery(GET_ME);
-  
   const [ removeBook ] = useMutation(REMOVE_BOOK);
-
   const userData = data?.me || [];
 
   
@@ -30,6 +27,7 @@ const SavedBooks = () => {
 
     try {
 
+      // Removes book.
       await removeBook({
         variables: { bookId }
       });

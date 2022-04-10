@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-// Day 03: 26
+// user data being pulled through
 export const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {
 
@@ -13,6 +13,7 @@ export const LOGIN_USER = gql`
   }
 `;
 
+// data to pull through to add new user
 export const ADD_USER = gql`
   mutation addUser($username: String!, $email: String!, $password: String!) {
 
@@ -28,7 +29,7 @@ export const ADD_USER = gql`
   }
 `;
 
-
+// data to pull through when saving a book
 export const SAVE_BOOK = gql`
   mutation saveBook($bookData: savedBook!) {
 
@@ -49,8 +50,7 @@ export const SAVE_BOOK = gql`
   }
 `;
 
-// Day 03: 25
-
+// data to pull through when removing a book
 export const REMOVE_BOOK = gql`
   mutation removeBook($bookId: ID!) {
     removeBook(bookId: $bookId) {
